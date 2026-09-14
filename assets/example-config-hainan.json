@@ -1,0 +1,185 @@
+{
+  "_说明": "本配置是一个完整的实战样例：双面板区位图（全国幅含南海断续线十段线 + 研究区幅），两幅等大图框，带经纬度刻度、比例尺、指北针、研究区红框与样点标注。请把 boundary.file 改成你自己的边界数据路径后再出图；boundary 数据需自备（本仓库不分发行政区划数据）。",
+  "out": "图1.2-区位图.png",
+  "tk": "",
+  "_tk说明": "留空则读环境变量 TDT_TK；天地图密钥申请 https://console.tianditu.gov.cn/api/key",
+  "cache_dir": ".tdt_cache",
+  "font_cn": "C:/Windows/Fonts/simhei.ttf",
+  "basemap": [
+    "ter",
+    "cva"
+  ],
+  "_basemap说明": "ter=地形晕渲、cva=中文注记。这一组合无路网；换成 vec 或 cta 会引入路网。",
+  "layout": {
+    "panel_height": 1300,
+    "gap": 90,
+    "top": 20
+  },
+  "panels": [
+    {
+      "_幅": "（a）全国幅：含南海断续线十段线 + 研究区红框",
+      "title": "（a）中国",
+      "title_size": 51,
+      "title_corner": "left",
+      "bbox": [
+        73.0,
+        3.4,
+        136.0,
+        54.0
+      ],
+      "zoom": 5,
+      "fit_aspect": 1.0324,
+      "lat_ticks": [
+        10,
+        20,
+        30,
+        40,
+        50
+      ],
+      "lon_ticks": [
+        80,
+        90,
+        100,
+        110,
+        120,
+        130
+      ],
+      "tick_side": "left",
+      "north": true,
+      "boundary": {
+        "file": "./data/中国_省.geojson",
+        "name_field": "name",
+        "line_names": [
+          "境界线"
+        ],
+        "nation_width": 4,
+        "prov_width": 1,
+        "min_area": 0.05,
+        "line_width": 4
+      },
+      "redbox": [
+        108.4,
+        17.85,
+        111.35,
+        20.45
+      ],
+      "redbox_width": 4,
+      "center_label": {
+        "text": "中国",
+        "size": 96,
+        "fill": [
+          15,
+          15,
+          15
+        ],
+        "stroke": 7
+      },
+      "side_label": {
+        "text": "海南省",
+        "size": 44,
+        "fill": [
+          210,
+          20,
+          20
+        ],
+        "dy": 26,
+        "stroke": 2
+      },
+      "scalebar": {
+        "ticks": [
+          0,
+          500,
+          1000,
+          1500,
+          2000
+        ],
+        "corner": "left"
+      }
+    },
+    {
+      "_幅": "（b）研究区幅：省界 + 市县界 + 试点标注",
+      "title": "（b）研究区域",
+      "title_size": 17,
+      "title_corner": "left",
+      "bbox": "auto",
+      "bbox_pad": 0.1,
+      "zoom": 8,
+      "fit_aspect": 1.032,
+      "lat_ticks": [
+        18,
+        19,
+        20
+      ],
+      "lon_ticks": [
+        109,
+        110,
+        111
+      ],
+      "tick_side": "right",
+      "north": true,
+      "boundary": {
+        "file": "./data/海南省_市.geojson",
+        "name_field": "name",
+        "line_names": [
+          "境界线"
+        ],
+        "union_exclude": [
+          "三沙市"
+        ],
+        "nation_width": 3,
+        "prov_width": 1,
+        "min_area": 0.0,
+        "line_width": 3
+      },
+      "point_font": 15,
+      "points": [
+        {
+          "name": "海口市",
+          "lon": 110.19541,
+          "lat": 20.04736
+        },
+        {
+          "name": "三亚市",
+          "lon": 109.50769,
+          "lat": 18.25476
+        },
+        {
+          "name": "儋州市",
+          "lon": 109.57663,
+          "lat": 19.5229
+        },
+        {
+          "name": "琼海市",
+          "lon": 110.4702,
+          "lat": 19.26072
+        },
+        {
+          "name": "文昌市",
+          "lon": 110.79353,
+          "lat": 19.54519
+        },
+        {
+          "name": "东方市",
+          "lon": 108.64819,
+          "lat": 19.09699
+        }
+      ],
+      "scalebar": {
+        "ticks": [
+          0,
+          25,
+          50,
+          75
+        ],
+        "corner": "right",
+        "fs_ratio": 0.85,
+        "thick": 0.36,
+        "inset": 1.4,
+        "pad": 0.75,
+        "boxh": 2.1,
+        "labdy": 0.34,
+        "kmdx": 0.5
+      }
+    }
+  ]
+}

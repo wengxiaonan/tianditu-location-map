@@ -1,0 +1,49 @@
+# 发布包专用 .gitignore —— 最后一道网
+# 作用：即使白名单配置档写错、打包脚本有 bug，误入的文件也不会被 git add 收进去。
+# 注意：.gitignore 只对「尚未被跟踪」的文件生效。
+
+# ── 文献全文（受版权保护，不入库）──
+*.pdf
+*.caj
+pdfs/
+papers/
+
+# ── 涉密与个人数据 ──
+*问卷*
+*台账*
+*盖章*
+*调查*
+
+# ── 未发表稿件 ──
+*修订稿*
+*投稿*
+*审稿意见*
+
+# ── 凭据（即使误入也应被拦住）──
+.env
+.env.*
+*.key
+*.pem
+*.p12
+*.pfx
+id_rsa
+credentials*.json
+
+# ── 天地图瓦片缓存（体积大、可重新下载）──
+.tdt_cache/
+
+# ── 用户自备的边界数据（本仓库不分发行政区划数据）──
+data/
+
+# ── 系统与缓存 ──
+.DS_Store
+Thumbs.db
+desktop.ini
+__pycache__/
+*.pyc
+*.pyo
+*.log
+.venv/
+node_modules/
+.idea/
+.vscode/
