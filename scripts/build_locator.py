@@ -163,12 +163,17 @@ class Panel:
         cx = self.ml + self.map.size[0] - int(fs * 2.6)
         cy = self.mt + int(fs * 3.6)
         L, w2 = int(fs * 2.0), int(fs * 0.66)
+        # 暗色底图（影像）上黑色指北针几乎不可见，故颜色可配置
+        fc = tuple(self.cfg.get('north_fill', (20, 20, 20)))
+        tc = tuple(self.cfg.get('north_text_fill', (0, 0, 0)))
         d.polygon([(cx, cy - L), (cx - w2, cy + int(fs * 0.8)),
                    (cx, cy + int(fs * 0.2)), (cx + w2, cy + int(fs * 0.8))],
-                  fill=(20, 20, 20), outline=(20, 20, 20))
+                  fill=fc, outline=fc)
         bb = d.textbbox((0, 0), '北', font=f)
         d.text((cx - (bb[2] + bb[0]) / 2, cy - L - int(fs * 0.5) - bb[3]), '北',
-               font=f, fill=(0, 0, 0))
+               font=f, fill=tc,
+               stroke_width=int(self.cfg.get('north_text_stroke', 0)),
+               stroke_fill=tuple(self.cfg.get('north_text_stroke_fill', (255, 255, 255))))
 
     # ---------- 比例尺 ----------
     def _scalebar(self, sb):
